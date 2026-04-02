@@ -38,9 +38,11 @@ pipeline{
     }
 
     stage('Deploy'){
+      steps {
         sh "docker rm -f ${CONTAINER_NAME} || true"
 
         sh "docker run -d --name ${CONTAINER_NAME} -p ${APP_PORT}:3000 ${IMAGE_NAME}:${IMAGE_TAG}"
+      }
     }
 
   }
